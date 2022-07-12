@@ -115,7 +115,7 @@ abstract class CustomControl implements IComponent, Control
 	 * Delegate to underlying container and remember it.
 	 *
 	 * @internal
-	 */
+	 **/
 	public function addComponent(IComponent $component, ?string $name = null, ?string $insertBefore = null): void
 	{
 		$this->container->addComponent($component, $name, $insertBefore);

@@ -198,7 +198,9 @@ class BootstrapRenderer implements FormRenderer
 			Cnf::INPUT_INVALID => [
 				Cnf::CLASS_ADD => 'is-invalid',
 			],
-
+			Cnf::INPUT_REQUIRED => [
+				Cnf::CLASS_ADD => 'required',
+			],
 			Cnf::DESCRIPTION => [
 				Cnf::ELEMENT_NAME => 'small',
 				Cnf::CLASS_SET    => ['form-text', 'text-muted'],
@@ -439,7 +441,7 @@ class BootstrapRenderer implements FormRenderer
 		/** @var Html $controlHtml */
 		$controlHtml = $control->getControl();
 		$control->setOption(RendererOptions::_RENDERED, true);
-		if (($this->form->showValidation || $control->hasErrors()) && $control instanceof IValidationInput) {
+		if (($this->form->showValidation || $control->hasErrors()) && $control instanceof IValidationInput && $this->form->isControlValidation()) {
 			$controlHtml = $control->showValidation($controlHtml);
 		}
 
@@ -521,6 +523,10 @@ class BootstrapRenderer implements FormRenderer
 			$controlLabel = $this->configElem(Cnf::LABEL, $controlLabel);
 			// just configure it to suit our needs
 
+			if ($control->isRequired()) {
+				$controlLabel = $this->configElem(Cnf::INPUT_REQUIRED, $controlLabel);
+			}
+			
 			return $controlLabel;
 		}
 
@@ -537,7 +543,7 @@ class BootstrapRenderer implements FormRenderer
 		if ($controlLabel) {
 			$labelHtml->setHtml($controlLabel);
 		}
-
+		
 		return $labelHtml;
 	}
 
@@ -559,7 +565,11 @@ class BootstrapRenderer implements FormRenderer
 
 		//region non-label parts
 		$controlHtml = $this->renderControl($control);
-		$feedbackHtml = $this->renderFeedback($control);
+		if ($this->form->isControlValidation() && $this->form->isShowControlFeedback()) {
+			$feedbackHtml = $this->renderFeedback($control);
+		} else {
+			$feedbackHtml = null;
+		}
 		$descriptionHtml = $this->renderDescription($control);
 
 		if (!empty($controlHtml)) {

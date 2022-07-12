@@ -12,7 +12,7 @@ use Nette\InvalidArgumentException;
 use Nette\Utils\Html;
 
 /**
- * Form rendered using Bootstrap 4
+ * Form rendered using Bootstrap 5
  *
  * @property bool $ajax
  * @property int  $renderMode
@@ -39,12 +39,18 @@ class BootstrapForm extends Form
 
 	/** @var bool */
 	private $autoShowValidation = true;
+	
+	/** @var bool */
+	private $controlValidation = true;
+	
+	/** @var bool */
+	private $showControlFeedback = true;
 
 	/** @var bool */
 	public static $allwaysUseNullable = false;
 
 	/** @var int */
-	private static $bootstrapVersion = BootstrapVersion::V4;
+	private static $bootstrapVersion = BootstrapVersion::V5;
 
 	/**
 	 * @param IContainer|null $container
@@ -136,7 +142,7 @@ class BootstrapForm extends Form
 
 		return $this;
 	}
-
+	
 	/**
 	 * If valid fields should explicitly be green
 	 */
@@ -154,6 +160,30 @@ class BootstrapForm extends Form
 	{
 		$this->showValidation = $showValidation;
 
+		return $this;
+	}
+
+	public function isControlValidation(): bool
+	{
+		return $this->controlValidation;
+	}
+	
+	public function setControlValidation(bool $controlValidation): BootstrapForm
+	{
+		$this->controlValidation = $controlValidation;
+		
+		return $this;
+	}
+	
+	public function isShowControlFeedback(): bool
+	{
+		return $this->showControlFeedback;
+	}
+	
+	public function setShowControlFeedback(bool $showControlFeedback): BootstrapForm
+	{
+		$this->showControlFeedback = $showControlFeedback;
+		
 		return $this;
 	}
 

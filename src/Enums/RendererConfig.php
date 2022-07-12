@@ -67,6 +67,8 @@ class RendererConfig
 	 * Element that is normally an inline element within bootstrap
 	 */
 
+	public const INPUT_REQUIRED = 'input-required';
+	
 	/**
 	 * Text saying if field is valid or invalid
 	 */
