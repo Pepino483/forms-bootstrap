@@ -14,6 +14,7 @@ use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Form;
 use Nette\Forms\FormRenderer;
 use Nette\Utils\Html;
+use Contributte\FormsBootstrap\Inputs\TextInput;
 
 /**
  * Converts a Form into Bootstrap 4 HTML output.
@@ -197,6 +198,12 @@ class BootstrapRenderer implements FormRenderer
 			],
 			Cnf::INPUT_INVALID => [
 				Cnf::CLASS_ADD => 'is-invalid',
+			],
+			Cnf::INPUT_GROUP => [
+				Cnf::CLASS_ADD => 'input-group',
+			],
+			Cnf::INPUT_APPEND_PREPEND => [
+				Cnf::CLASS_ADD => 'input-append-prepend',
 			],
 			Cnf::INPUT_REQUIRED => [
 				Cnf::CLASS_ADD => 'required',
@@ -446,6 +453,29 @@ class BootstrapRenderer implements FormRenderer
 		}
 
 		$controlHtml = $this->configElem(Cnf::INPUT, $controlHtml);
+		
+		if ($control instanceof TextInput) {
+			if ($control->getPrepend() || $control->getAppend()) {
+				$controlWrapper = Html::el('div');
+				if ($control->getInputGroup()) {
+					$controlWrapper = $this->configElem(Cnf::INPUT_GROUP, $controlWrapper);
+				} else {
+					$controlWrapper = $this->configElem(Cnf::INPUT_APPEND_PREPEND, $controlWrapper);
+				}
+				
+				if ($control->getPrepend()) {
+					$controlWrapper->addHtml($control->getPrepend());
+				}
+				
+				$controlWrapper->addHtml($controlHtml);
+				
+				if ($control->getAppend()) {
+					$controlWrapper->addHtml($control->getAppend());
+				}
+				
+				$controlHtml = $controlWrapper;
+			}
+		}
 
 		return (string) $controlHtml;
 	}

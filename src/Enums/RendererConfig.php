@@ -24,6 +24,7 @@ class RendererConfig
 	 * Form group
 	 */
 	public const GROUP = 'group';
+	
 	/**
 	 * Label of a group
 	 */
@@ -35,6 +36,7 @@ class RendererConfig
 	 * @see BootstrapRow
 	 */
 	public const GRID_ROW = 'grid-row';
+	
 	/**
 	 * @see BootstrapCell
 	 */
@@ -44,6 +46,7 @@ class RendererConfig
 	 * Errors belonging to the form rather than an individual control. This is a container.
 	 */
 	public const FORM_OWN_ERRORS = 'form-own-errors';
+	
 	/**
 	 * Multiple of those will be inside FORM_OWN_ERRORS
 	 */
@@ -52,8 +55,9 @@ class RendererConfig
 	public const PAIR = 'pair';
 	public const LABEL = 'label';
 	public const DESCRIPTION = 'description';
+	
 	/**
-	 * form group parts which are not label - input, feedback, description
+	 * Form group parts which are not label - input, feedback, description
 	 */
 	public const NON_LABEL = 'non-label';
 
@@ -63,20 +67,25 @@ class RendererConfig
 	public const INPUT = 'input';
 	public const INPUT_VALID = 'input-valid';
 	public const INPUT_INVALID = 'input-invalid';
+	
+	public const INPUT_GROUP = 'input-group';
+	public const INPUT_APPEND_PREPEND = 'input-append-prepend';
+	
 	/**
 	 * Element that is normally an inline element within bootstrap
 	 */
-
 	public const INPUT_REQUIRED = 'input-required';
 	
 	/**
 	 * Text saying if field is valid or invalid
 	 */
 	public const FEEDBACK = 'feedback';
+	
 	/**
 	 * Child of 'feedback'. Extra attributes for invalid feedback
 	 */
 	public const FEEDBACK_VALID = 'feedback-valid';
+	
 	/**
 	 * Child of 'feedback'. Extra attributes for valid feedback
 	 */
@@ -86,20 +95,24 @@ class RendererConfig
 	 * Element name
 	 */
 	public const ELEMENT_NAME = 'element';
+	
 	/**
 	 * Container. Must contain 'element' key. May be recursive.
 	 */
 	public const CONTAINER = 'container';
 
 	public const ATTRIBUTES = 'attributes';
+	
 	/**
 	 * Class or array of classes to set
 	 */
 	public const CLASS_SET = 'class-set';
+	
 	/**
 	 * Class or array of classes to add
 	 */
 	public const CLASS_ADD = 'class-add';
+	
 	/**
 	 * Class or array to classes to remove if they exist
 	 */
