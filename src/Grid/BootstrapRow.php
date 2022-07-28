@@ -157,6 +157,7 @@ class BootstrapRow extends CustomControl
 	{
 		/** @var BootstrapRenderer $renderer */
 		$renderer = $this->getContainer()->form->renderer;
+		$renderer->attachForm($this->getContainer()->form);
 
 		$element = $renderer->configElem(RendererConfig::GRID_ROW, $this->elementPrototype);
 
