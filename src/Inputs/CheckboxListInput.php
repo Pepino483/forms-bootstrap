@@ -67,5 +67,14 @@ class CheckboxListInput extends CheckboxList implements IValidationInput
 
 		return $fieldset;
 	}
+	
+	public function setScrollable(int $height = 200) {
+		$this->getControl()
+			->style('height', $height)
+			->style('overflow-x', 'scroll')
+			->class[] = 'form-control';
+		
+		return $this;
+	}
 
 }
