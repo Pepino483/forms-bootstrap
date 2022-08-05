@@ -52,7 +52,7 @@ class CheckboxListInput extends CheckboxList implements IValidationInput
 		
 		if ($this->scrollable > 0) {
 			$fieldset->style('height', $this->scrollable . 'px')
-				->style('overflow-x', 'scroll')
+				->style('overflow-y', 'scroll')
 				->class[] = 'form-control';
 		}
 
