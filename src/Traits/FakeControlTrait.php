@@ -63,5 +63,9 @@ trait FakeControlTrait
 	public function validate(): void
 	{
 	}
+	
+	public function loadHttpData(): void
+	{
+	}
 
 }
