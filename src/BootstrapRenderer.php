@@ -179,7 +179,7 @@ class BootstrapRenderer implements FormRenderer
 			Cnf::FORM_OWN_ERRORS => [],
 			Cnf::FORM_OWN_ERROR  => [
 				Cnf::ELEMENT_NAME => 'div',
-				Cnf::CLASS_SET    => ['alert', 'alert-danger'],
+				Cnf::CLASS_SET    => ['alert', 'alert-danger', 'alert-dismissible', 'fade', 'show'],
 			],
 
 			Cnf::PAIR  => [
@@ -779,6 +779,8 @@ class BootstrapRenderer implements FormRenderer
 					} else {
 						$messageHtml->setText($message);
 					}
+					
+					$messageHtml->addHtml(Html::el('button')->class('btn-close')->data('bs-dismiss', 'alert'));
 
 					$el->addHtml($messageHtml);
 				}
