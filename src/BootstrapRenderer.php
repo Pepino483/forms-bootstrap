@@ -762,7 +762,8 @@ class BootstrapRenderer implements FormRenderer
 
 			if ($form->hasErrors()) {
 				$showFeedback = true;
-				$messages = $form->getOwnErrors();
+				// $messages = $form->getOwnErrors();
+				$messages = $form->getErrors();
 			} else {
 				$showFeedback = false;
 				// this doesn't make sense, form is sent if it's valid
