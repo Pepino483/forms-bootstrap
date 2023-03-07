@@ -769,7 +769,7 @@ class BootstrapRenderer implements FormRenderer
 				// this doesn't make sense, form is sent if it's valid
 			}
 
-			if ($showFeedback && count($messages)) {
+			if ($this->form->showFormFeedback && $showFeedback && count($messages)) {
 				$el = $this->getElem(Cnf::FORM_OWN_ERRORS);
 				$msgTemplate = $this->getElem(Cnf::FORM_OWN_ERROR);
 

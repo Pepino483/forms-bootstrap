@@ -18,6 +18,7 @@ use Nette\Utils\Html;
  * @property int  $renderMode
  * @property bool $showValidation     If valid fields should explicitly be green if valid
  * @property bool $autoShowValidation If true, valid inputs will be explicitly green on unsuccessful submit
+ * @property bool $showFormFeedback	  If true, render form feedback before form
  */
 class BootstrapForm extends Form
 {
@@ -45,6 +46,9 @@ class BootstrapForm extends Form
 	
 	/** @var bool */
 	private $showControlFeedback = true;
+	
+	/** @var bool */
+	private $showFormFeedback = true;
 
 	/** @var bool */
 	public static $allwaysUseNullable = false;
@@ -183,6 +187,18 @@ class BootstrapForm extends Form
 	public function setShowControlFeedback(bool $showControlFeedback): BootstrapForm
 	{
 		$this->showControlFeedback = $showControlFeedback;
+		
+		return $this;
+	}
+	
+	public function isShowFormFeedback(): bool
+	{
+		return $this->showFormFeedback;
+	}
+	
+	public function setShowFormFeedback(bool $showFormFeedback): BootstrapForm
+	{
+		$this->showFormFeedback = $showFormFeedback;
 		
 		return $this;
 	}
