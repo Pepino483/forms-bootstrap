@@ -781,7 +781,7 @@ class BootstrapRenderer implements FormRenderer
 						$messageHtml->setText($message);
 					}
 					
-					$messageHtml->addHtml(Html::el('button')->class('btn-close')->data('bs-dismiss', 'alert'));
+					$messageHtml->addHtml(Html::el('button')->class('btn-close')->data('bs-dismiss', 'alert')->type('button'));
 
 					$el->addHtml($messageHtml);
 				}
