@@ -300,10 +300,12 @@ trait BootstrapContainerTrait
 	 */
 	public function addFloat(string $name, ?string $label = null): TextInput
 	{
-		return $this->addText($name, $label)
-			->addCondition(self::FILLED)
-				->addRule(self::MAX_LENGTH, null, 255)
-				->addRule(self::FLOAT, 'Formát políčka "%s" není v pořádku.', $label);
+		$input = $this->addText($name, $label);
+		$input->addCondition(Form::FILLED)
+			->addRule(Form::MAX_LENGTH, null, 255)
+			->addRule(Form::FLOAT, 'Formát políčka "%s" není v pořádku.', $label);
+		
+		return $input;
 	}
 	
 	/**
@@ -314,10 +316,12 @@ trait BootstrapContainerTrait
 	 */
 	public function addNumeric(string $name, ?string $label = null): TextInput
 	{
-		return $this->addText($name, $label)
-			->addCondition(self::FILLED)
-				->addRule(self::MAX_LENGTH, null, 255)
-				->addRule(self::NUMERIC, 'Formát políčka "%s" není v pořádku.', $label);
+		$input =  $this->addText($name, $label);
+		$input->addCondition(Form::FILLED)
+			->addRule(Form::MAX_LENGTH, null, 255)
+			->addRule(Form::NUMERIC, 'Formát políčka "%s" není v pořádku.', $label);
+		
+		return $input;
 	}
 
 }
