@@ -291,5 +291,33 @@ trait BootstrapContainerTrait
 
 		return $comp;
 	}
+	
+	/**
+	 *
+	 * @param string $name
+	 * @param string $label
+	 * @return TextInput
+	 */
+	public function addFloat(string $name, ?string $label = null): TextInput
+	{
+		return $this->addText($name, $label)
+			->addCondition(self::FILLED)
+				->addRule(self::MAX_LENGTH, null, 255)
+				->addRule(self::FLOAT, 'Formát políčka "%s" není v pořádku.', $label);
+	}
+	
+	/**
+	 *
+	 * @param string $name
+	 * @param string $label
+	 * @return TextInput
+	 */
+	public function addNumeric(string $name, ?string $label = null): TextInput
+	{
+		return $this->addText($name, $label)
+			->addCondition(self::FILLED)
+				->addRule(self::MAX_LENGTH, null, 255)
+				->addRule(self::NUMERIC, 'Formát políčka "%s" není v pořádku.', $label);
+	}
 
 }
