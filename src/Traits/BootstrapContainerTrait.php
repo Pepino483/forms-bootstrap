@@ -316,8 +316,9 @@ trait BootstrapContainerTrait
 	 */
 	public function addNumeric(string $name, ?string $label = null): TextInput
 	{
-		$input =  $this->addText($name, $label);
-		$input->addCondition(Form::FILLED)
+		$input =  $this->addInteger($name, $label);
+		$input->setHtmlType('text')
+			->addCondition(Form::FILLED)
 			->addRule(Form::MAX_LENGTH, null, 255)
 			->addRule(Form::NUMERIC, 'Formát políčka "%s" není v pořádku.', $label);
 		
