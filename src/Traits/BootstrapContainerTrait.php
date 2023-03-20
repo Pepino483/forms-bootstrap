@@ -151,7 +151,7 @@ trait BootstrapContainerTrait
 	{
 		return $this->addText($name, $label)
 			->setNullable(BootstrapForm::$allwaysUseNullable)
-			->addRule(Form::INTEGER);
+			->addRule(Form::INTEGER, 'Formát políčka "%s" není v pořádku.', $label);
 	}
 
 	/**
@@ -317,8 +317,7 @@ trait BootstrapContainerTrait
 	public function addNumeric(string $name, ?string $label = null): TextInput
 	{
 		$input =  $this->addText($name, $label);
-		$input->setHtmlType('text')
-			->setNullable(BootstrapForm::$allwaysUseNullable)
+		$input->setNullable(BootstrapForm::$allwaysUseNullable)
 			->addRule(Form::MAX_LENGTH, null, 255)
 			->addRule(Form::NUMERIC, 'Formát políčka "%s" není v pořádku.', $label);
 		
