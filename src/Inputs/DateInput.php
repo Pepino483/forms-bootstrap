@@ -15,30 +15,18 @@ use Nette\Utils\Html;
  */
 class DateInput extends TextInput
 {
-
-	/** @var string  */
-	public static $defaultFormat = DateTimeFormat::D_DMY_DOTS_NO_LEAD;
-
 	/** @var string[] */
 	public static $additionalHtmlClasses = [];
 
-	/** @var bool */
-	public static $addDefaultPlaceholder = true;
-
+	/** @var string  */
+	public $format = DateTimeFormat::DATE;
+	
 	/**
 	 * This errorMessage is added for invalid format
 	 *
 	 * @var string
 	 */
-	public $invalidFormatMessage = 'invalid/incorrect format';
-
-	/**
-	 * Input accepted format.
-	 * Default is d.m.yyyy
-	 *
-	 * @var string
-	 */
-	private $format;
+	public $invalidFormatMessage = 'invalid/incorrect date format';
 
 	/** @var bool */
 	private $isValidated = false;
@@ -54,11 +42,11 @@ class DateInput extends TextInput
 
 		parent::__construct($label, null);
 
+		$this->setHtmlType('date');
+		
 		$this->addRule(function ($input) {
 			return DateTimeFormat::validate($this->format, $input->value);
 		}, $this->invalidFormatMessage);
-
-		$this->setFormat(static::$defaultFormat);
 	}
 
 	/**
@@ -94,6 +82,7 @@ class DateInput extends TextInput
 	 */
 	public function setValue($value)
 	{
+		
 		if ($value instanceof DateTimeInterface) {
 			parent::setValue($value->format($this->format));
 			$this->validate();
@@ -146,33 +135,6 @@ class DateInput extends TextInput
 	{
 		parent::validate();
 		$this->isValidated = true;
-	}
-
-	/**
-	 * @see DateInput::$format
-	 */
-	public function getFormat(): string
-	{
-		return $this->format;
-	}
-
-	/**
-	 * Input accepted format.
-	 * Default is d.m.yyyy h:mm
-	 */
-	public function setFormat(string $format, ?string $placeholder = null): self
-	{
-		$this->format = $format;
-
-		if ($placeholder === null && static::$addDefaultPlaceholder) {
-			$placeholder = DateTimeFormat::toHumanFormat($format);
-		}
-
-		if (!empty($placeholder)) {
-			$this->setPlaceholder($placeholder);
-		}
-
-		return $this;
 	}
 
 }
