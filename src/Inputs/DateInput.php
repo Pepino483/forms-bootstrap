@@ -82,6 +82,7 @@ class DateInput extends TextInput
 	 */
 	public function setValue($value)
 	{
+		if ($value == null) return $this;
 		
 		if ($value instanceof DateTimeInterface) {
 			parent::setValue($value->format($this->format));
@@ -91,10 +92,6 @@ class DateInput extends TextInput
 		} elseif (is_string($value) && DateTimeFormat::validate($this->format, $value)) {
 			parent::setValue($value);
 			$this->validate();
-
-			return $this;
-		} elseif ($value === null) {
-			parent::setValue(null);
 
 			return $this;
 		} else {
