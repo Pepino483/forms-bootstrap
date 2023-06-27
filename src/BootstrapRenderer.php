@@ -248,7 +248,7 @@ class BootstrapRenderer implements FormRenderer
 		return [
 			RenderMode::INLINE         => [
 				Cnf::FORM     => [
-					Cnf::CLASS_ADD => 'form-inline',
+					Cnf::CLASS_ADD => 'row row-cols-lg-auto g-3 align-items-center',
 				],
 				Cnf::NON_LABEL => [
 					Cnf::ELEMENT_NAME => 'div',
