@@ -40,10 +40,11 @@ class SelectInput extends SelectBox implements IValidationInput
 	{
 		$select = parent::getControl();
 
-		$select->attrs += [
-			'class'    => [BootstrapForm::getBootstrapVersion() === BootstrapVersion::V5 ? 'form-select' : 'custom-select'],
-			'disabled' => $this->isControlDisabled(),
-		];
+		$select->class[] = 'form-select';
+
+		if ($this->isControlDisabled()) {
+			$select->setAttribute('disabled', true);
+		}
 
 		return $select;
 	}
