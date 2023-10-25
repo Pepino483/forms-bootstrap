@@ -18,7 +18,7 @@ class CheckboxListInput extends CheckboxList implements IValidationInput
 	use StandardValidationTrait {
 		showValidation as protected _rawShowValidation;
 	}
-	
+
 	/** @var null|integer */
 	private $scrollable = null;
 
@@ -38,7 +38,7 @@ class CheckboxListInput extends CheckboxList implements IValidationInput
 			$line = CheckboxInput::makeCheckbox(
 				$this->getHtmlName(),
 				$baseId . $c,
-				$caption === null ? null : (string) $caption,
+				$caption === null ? null : $caption,
 				$this->isValueSelected($value),
 				$value,
 				false,
@@ -49,7 +49,7 @@ class CheckboxListInput extends CheckboxList implements IValidationInput
 			$fieldset->addHtml($line);
 			$c++;
 		}
-		
+
 		if ($this->scrollable > 0) {
 			$fieldset->style('height', $this->scrollable . 'px')
 				->style('overflow-y', 'scroll')
@@ -76,15 +76,15 @@ class CheckboxListInput extends CheckboxList implements IValidationInput
 
 		return $fieldset;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param int|null $height
 	 * @return \Contributte\FormsBootstrap\Inputs\CheckboxListInput
 	 */
 	public function setScrollable(?int $height = 200) {
 		$this->scrollable = $height;
-		
+
 		return $this;
 	}
 

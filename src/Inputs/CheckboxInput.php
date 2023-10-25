@@ -98,7 +98,7 @@ class CheckboxInput extends Checkbox implements IValidationInput
 			Html::el('label', [
 				'class' => [BootstrapForm::getBootstrapVersion() === BootstrapVersion::V5 ? 'form-check-label' : 'custom-control-label'],
 				'for'   => $htmlId,
-			])->setText($caption)
+			])->addHtml($caption)
 		);
 
 		$line = Html::el('div');
