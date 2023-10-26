@@ -291,27 +291,27 @@ trait BootstrapContainerTrait
 
 		return $comp;
 	}
-	
+
 	/**
 	 *
 	 * @param string $name
-	 * @param string $label
+	 * @param null|object|string $label
 	 * @return TextInput
 	 */
-	public function addFloat(string $name, ?string $label = null): TextInput
+	public function addFloat(string $name, $label = null): TextInput
 	{
 		$input = $this->addText($name, $label);
 		$input->setNullable(BootstrapForm::$allwaysUseNullable)
 			->addRule(Form::MAX_LENGTH, null, 255)
 			->addRule(Form::FLOAT, 'Formát políčka "%s" není v pořádku.', $label);
-		
+
 		return $input;
 	}
-	
+
 	/**
 	 *
 	 * @param string $name
-	 * @param string $label
+	 * @param string|null $label
 	 * @return TextInput
 	 */
 	public function addNumeric(string $name, ?string $label = null): TextInput
@@ -320,7 +320,7 @@ trait BootstrapContainerTrait
 		$input->setNullable(BootstrapForm::$allwaysUseNullable)
 			->addRule(Form::MAX_LENGTH, null, 255)
 			->addRule(Form::NUMERIC, 'Formát políčka "%s" není v pořádku.', $label);
-		
+
 		return $input;
 	}
 
