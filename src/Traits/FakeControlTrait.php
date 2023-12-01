@@ -50,9 +50,9 @@ trait FakeControlTrait
 	 *
 	 * @param mixed $value
 	 */
-	public function setValue($value): Control
+	public function setValue($value): void
 	{
-		throw new NotImplementedException();
+		// throw new NotImplementedException();
 	}
 
 	/**
