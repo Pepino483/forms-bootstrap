@@ -3,36 +3,30 @@
 namespace Contributte\FormsBootstrap\Inputs;
 
 use Contributte\FormsBootstrap\Enums\DateTimeFormat;
+use Nette\Forms\Controls\DateTimeControl;
+use Nette\Utils\Html;
 
-/**
- * Class DateTimeInput. Textual datetime input.
- *
- * @property string $format expected PHP format for datetime
- */
-class DateTimeInput extends DateInput
+class DateTimeInput extends DateTimeControl
 {
 
 	/** @var string[] */
 	public static $additionalHtmlClasses = [];
-	
-	/** @var string  */
-	public $format = DateTimeFormat::DATETIME;
-	
-	/**
-	 * This errorMessage is added for invalid format
-	 *
-	 * @var string
-	 */
-	public $invalidFormatMessage = 'invalid/incorrect datetime format';
 
 	/**
 	 * @inheritdoc
 	 */
-	public function __construct($label = null, ?int $maxLength = null)
+	public function __construct($label = null, bool $withSeconds = false)
 	{
-		parent::__construct($label, $maxLength);
-		
-		$this->setHtmlType('datetime-local');
+		parent::__construct($label, self::TypeDateTime, $withSeconds);
+		$this->format = DateTimeFormat::DATETIME;
 	}
-	
+
+	public function getControl(): Html
+	{
+		$control = parent::getControl();
+		$control->class[] = implode(' ', static::$additionalHtmlClasses);
+
+		return $control;
+	}
+
 }
