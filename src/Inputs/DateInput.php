@@ -18,7 +18,7 @@ class DateInput extends DateTimeControl
 	public function __construct($label = null)
 	{
 		parent::__construct($label);
-		$this->format = DateTimeFormat::DATE;
+		$this->setFormat(DateTimeFormat::DATE);
 	}
 
 	public function getControl(): Html
