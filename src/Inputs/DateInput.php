@@ -2,15 +2,13 @@
 
 namespace Contributte\FormsBootstrap\Inputs;
 
+use Contributte\FormsBootstrap\BootstrapUtils;
 use Contributte\FormsBootstrap\Enums\DateTimeFormat;
 use Nette\Forms\Controls\DateTimeControl;
 use Nette\Utils\Html;
 
 class DateInput extends DateTimeControl
 {
-
-	/** @var string[] */
-	public static $additionalHtmlClasses = [];
 
 	/**
 	 * @param Html|string|null $label
@@ -24,7 +22,9 @@ class DateInput extends DateTimeControl
 	public function getControl(): Html
 	{
 		$control = parent::getControl();
-		$control->class[] = implode(' ', static::$additionalHtmlClasses);
+		BootstrapUtils::standardizeClass($control);
+
+		$control->class[] = 'form-control';
 
 		return $control;
 	}
