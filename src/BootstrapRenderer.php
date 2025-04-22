@@ -8,6 +8,7 @@ use Contributte\FormsBootstrap\Enums\RendererConfig as Cnf;
 use Contributte\FormsBootstrap\Enums\RendererOptions;
 use Contributte\FormsBootstrap\Enums\RenderMode;
 use Contributte\FormsBootstrap\Inputs\IValidationInput;
+use Contributte\FormsBootstrap\Inputs\SelectInput;
 use Nette;
 use Nette\Forms\Control;
 use Nette\Forms\Controls\BaseControl;
@@ -453,8 +454,8 @@ class BootstrapRenderer implements FormRenderer
 		}
 
 		$controlHtml = $this->configElem(Cnf::INPUT, $controlHtml);
-		
-		if ($control instanceof TextInput) {
+
+		if ($control instanceof TextInput || $control instanceof SelectInput) {
 			if ($control->getPrepend() || $control->getAppend()) {
 				$controlWrapper = Html::el('div');
 				if ($control->getInputGroup()) {
@@ -462,17 +463,17 @@ class BootstrapRenderer implements FormRenderer
 				} else {
 					$controlWrapper = $this->configElem(Cnf::INPUT_APPEND_PREPEND, $controlWrapper);
 				}
-				
+
 				if ($control->getPrepend()) {
 					$controlWrapper->addHtml($control->getPrepend());
 				}
-				
+
 				$controlWrapper->addHtml($controlHtml);
-				
+
 				if ($control->getAppend()) {
 					$controlWrapper->addHtml($control->getAppend());
 				}
-				
+
 				$controlHtml = $controlWrapper;
 			}
 		}
@@ -556,7 +557,7 @@ class BootstrapRenderer implements FormRenderer
 			if ($control->isRequired()) {
 				$controlLabel = $this->configElem(Cnf::INPUT_REQUIRED, $controlLabel);
 			}
-			
+
 			return $controlLabel;
 		}
 
@@ -573,7 +574,7 @@ class BootstrapRenderer implements FormRenderer
 		if ($controlLabel) {
 			$labelHtml->setHtml($controlLabel);
 		}
-		
+
 		return $labelHtml;
 	}
 
@@ -780,7 +781,7 @@ class BootstrapRenderer implements FormRenderer
 					} else {
 						$messageHtml->setText($message);
 					}
-					
+
 					$messageHtml->addHtml(Html::el('button')->class('btn-close')->data('bs-dismiss', 'alert')->type('button'));
 
 					$el->addHtml($messageHtml);
