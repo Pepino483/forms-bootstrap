@@ -3,6 +3,7 @@
 namespace Contributte\FormsBootstrap\Inputs;
 
 use Contributte\FormsBootstrap\BootstrapUtils;
+use Contributte\FormsBootstrap\Traits\InputExtraTrait;
 use Contributte\FormsBootstrap\Traits\StandardValidationTrait;
 use Nette\Utils\Html;
 
@@ -16,21 +17,13 @@ class TextInput extends \Nette\Forms\Controls\TextInput implements IValidationIn
 {
 
 	use StandardValidationTrait;
+	use InputExtraTrait;
 
 	/** @var string|null */
 	private $placeholder;
 
 	/** @var bool|null */
 	private $autocomplete = null;
-	
-	/** @var Html|null */
-	private $append = null;
-	
-	/** @var Html|null */
-	private $prepend = null;
-	
-	/** @var bool */
-	private $inputGroup = false;
 
 	/**
 	 * @param string|Html|null $label
@@ -116,42 +109,6 @@ class TextInput extends \Nette\Forms\Controls\TextInput implements IValidationIn
 		}
 
 		return $label;
-	}
-	
-	public function getAppend(): ? Html
-	{
-		return $this->append;
-	}
-	
-	public function setAppend(?Html $html): self
-	{
-		$this->append = $html;
-		
-		return $this;
-	}
-	
-	public function getPrepend(): ? Html
-	{
-		return $this->prepend;
-	}
-	
-	public function setPrepend(?Html $html): self
-	{
-		$this->prepend = $html;
-		
-		return $this;
-	}
-	
-	public function getInputGroup(): bool
-	{
-		return $this->inputGroup;
-	}
-	
-	public function setInputGroup(bool $inputGroup): self
-	{
-		$this->inputGroup = $inputGroup;
-		
-		return $this;
 	}
 
 }

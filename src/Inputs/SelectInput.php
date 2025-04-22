@@ -5,6 +5,7 @@ namespace Contributte\FormsBootstrap\Inputs;
 use Contributte\FormsBootstrap\BootstrapForm;
 use Contributte\FormsBootstrap\Enums\BootstrapVersion;
 use Contributte\FormsBootstrap\Traits\ChoiceInputTrait;
+use Contributte\FormsBootstrap\Traits\InputExtraTrait;
 use Contributte\FormsBootstrap\Traits\InputPromptTrait;
 use Contributte\FormsBootstrap\Traits\StandardValidationTrait;
 use Nette\Forms\Controls\SelectBox;
@@ -20,6 +21,7 @@ class SelectInput extends SelectBox implements IValidationInput
 	use ChoiceInputTrait;
 	use InputPromptTrait;
 	use StandardValidationTrait;
+	use InputExtraTrait;
 
 	/**
 	 * @param string|Html|null       $label
