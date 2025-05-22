@@ -12,9 +12,10 @@ class DateTimeInput extends DateTimeControl
 	/**
 	 * @inheritdoc
 	 */
-	public function __construct($label = null, bool $withSeconds = false)
+
+	public function __construct($label = null, int $type = self::TypeDate, bool $withSeconds = false)
 	{
-		parent::__construct($label, self::TypeDateTime, $withSeconds);
+		parent::__construct($label, $type, $withSeconds);
 	}
 
 	/**

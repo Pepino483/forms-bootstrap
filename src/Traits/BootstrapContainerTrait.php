@@ -105,7 +105,23 @@ trait BootstrapContainerTrait
 	 */
 	public function addDate(string $name, $label = null): DateTimeControl
 	{
-		$comp = new DateInput($label);
+		$comp = new DateTimeInput($label, DateTimeControl::TypeDate);
+		//$comp->setNullable(BootstrapForm::$allwaysUseNullable);
+		$this->addComponent($comp, $name);
+
+		return $comp;
+	}
+
+	/**
+	 * @param string $name
+	 * @param null $label
+	 * @param bool $withSeconds
+	 * @return DateTimeControl
+	 * Adds a time input.
+	 */
+	public function addTime(string $name, $label = null, bool $withSeconds = false): DateTimeControl
+	{
+		$comp = new DateTimeInput($label, DateTimeControl::TypeTime, $withSeconds);
 		//$comp->setNullable(BootstrapForm::$allwaysUseNullable);
 		$this->addComponent($comp, $name);
 
@@ -118,7 +134,7 @@ trait BootstrapContainerTrait
 	 */
 	public function addDateTime(string $name, $label = null, bool $withSeconds = false): DateTimeControl
 	{
-		$comp = new DateTimeInput($label, $withSeconds);
+		$comp = new DateTimeInput($label, DateTimeControl::TypeDateTime, $withSeconds);
 		//$comp->setNullable(BootstrapForm::$allwaysUseNullable);
 		$this->addComponent($comp, $name);
 
