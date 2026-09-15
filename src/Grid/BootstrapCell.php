@@ -3,11 +3,13 @@
 namespace Contributte\FormsBootstrap\Grid;
 
 use Contributte\FormsBootstrap\BootstrapRenderer;
+use Contributte\FormsBootstrap\Controls\CustomControl;
 use Contributte\FormsBootstrap\Enums\RendererConfig;
 use Contributte\FormsBootstrap\Traits\BootstrapContainerTrait;
 use Nette\ComponentModel\IComponent;
-use Nette\Forms\Control;
+use Nette\Forms\Container;
 use Nette\Forms\ControlGroup;
+use Nette\Forms\Controls\BaseControl;
 use Nette\SmartObject;
 use Nette\Utils\Html;
 
@@ -17,10 +19,11 @@ use Nette\Utils\Html;
  * Only one component can be present.
  *
  * @property-read int  $numOfColumns     Number of Bootstrap columns to occupy
- * @property-read Control $childControls|null     Nested child control if any
+ * @property-read IComponent[] $childControls Nested child components
  * @property-read Html $elementPrototype the Html div that will be rendered. You may define additional
  *                properties.
  */
+
 class BootstrapCell
 {
 
@@ -43,7 +46,7 @@ class BootstrapCell
 	/** @var int|false|null */
 	private $numOfColumns;
 
-	/** @var Control[]|null */
+	/** @var IComponent[] */
 	private $childControls = [];
 
 	/** @var BootstrapRow */
@@ -95,10 +98,16 @@ class BootstrapCell
 
 		$element = $renderer->configElem(RendererConfig::GRID_CELL, $element);
 		$element->class[] = $this->createClass();
-
 		foreach ($this->childControls as $childControl) {
-			$pairHtml = $renderer->renderPair($childControl);
-			$element->addHtml($pairHtml);
+			if ($childControl instanceof BaseControl) {
+				$element->addHtml($renderer->renderPair($childControl));
+
+			} elseif ($childControl instanceof Container) {
+				$element->addHtml($renderer->renderControls($childControl));
+
+			} elseif ($childControl instanceof CustomControl) {
+				$element->addHtml($childControl->render());
+			}
 		}
 
 		return $element;

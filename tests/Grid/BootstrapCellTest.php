@@ -6,6 +6,7 @@ use Contributte\FormsBootstrap\BootstrapForm;
 use Contributte\FormsBootstrap\Grid\BootstrapCell;
 use Contributte\FormsBootstrap\Grid\BootstrapRow;
 use Nette\Application\UI\Presenter;
+use Nette\ComponentModel\IComponent;
 use Nette\InvalidArgumentException;
 use Tests\BaseTest;
 
@@ -41,6 +42,21 @@ class BootstrapCellTest extends BaseTest
 		$this->cell->addSubmit('second', 'Second');
 		$this->form->render();
 		$this->expectOutputString($this->loadTextData('cell_with_2_submits.html'));
+	}
+
+	public function testRenderContainer(): void
+	{
+		$container = $this->cell->addContainer('container');
+		$container->addText('text', 'Text');
+		$html = $this->row->render()->render();
+		$this->assertStringContainsString('<div class="col-sm-12">', $html);
+		$this->assertStringContainsString('<input type="text" name="container[text]"', $html);
+	}
+
+	public function testRenderIgnoresUnsupportedComponent(): void
+	{
+		$this->cell->addComponent($this->createMock(IComponent::class), 'component');
+		$this->assertStringContainsString('<div class="col-sm-12"></div>', $this->row->render()->render());
 	}
 
 	public function testMoreCellThenAvailable(): void
